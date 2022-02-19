@@ -14,7 +14,7 @@ def webServer(port=13331):
 
     while True:
         # Establish the connection
-        # print('Ready to serve...')
+        print('Ready to serve...')
         connectionSocket, addr = serverSocket.accept() # Fill in start      #Fill in end
         try:
 
@@ -26,7 +26,10 @@ def webServer(port=13331):
 
                 # Send one HTTP header line into socket.
                 # Fill in start
-                connectionSocket.send('HTTP/1.1 200 OK \r\n'.encode())
+                firstMessage = "HTTP/1.1 200 OK \r\n"
+                connectionSocket.send(firstMessage.encode())
+                secondMessage = "HTTP/1.1 404 Not Found \r\n"
+                connectionSocket.send(secondMessage.encode())
                 # Fill in end
 
                 # Send the content of the requested file to the client
